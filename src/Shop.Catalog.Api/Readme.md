@@ -3,7 +3,7 @@
 This starter project consists of:
 * serverless.template - an AWS CloudFormation Serverless Application Model template file for declaring your Serverless functions and other AWS resources
 * Function.cs - class file containing the C# methods mapped to the Serverless functions declared in the template file
-* Blog.cs - file containing a C# class representing a blog entry in the DynamoDB table
+* Product.cs - file containing a C# class representing a product in the DynamoDB table
 * aws-lambda-tools-defaults.json - default argument settings for use with Visual Studio and command line deployment tools for AWS
 
 You may also have a test project depending on the options selected.
