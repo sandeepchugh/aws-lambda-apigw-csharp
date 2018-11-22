@@ -26,7 +26,8 @@ namespace Shop.Catalog.Api
     {
         // This const is the name of the environment variable that the serverless.template will use to set
         // the name of the DynamoDB table used to store blog posts.
-        const string TABLENAME_ENVIRONMENT_VARIABLE_LOOKUP = "ProductTable";
+        const string TablenameEnvironmentVariableLookup = "ProductTable";
+        const string LoglevelEnvironmentVariableLookup = "LogLevel";
 
         public const string ID_QUERY_STRING_NAME = "Id";
         private readonly IProductService _productService;
@@ -39,7 +40,8 @@ namespace Shop.Catalog.Api
         {
             // Check to see if a table name was passed in through environment variables and if so 
             // add the table mapping.
-            var tableName = Environment.GetEnvironmentVariable(TABLENAME_ENVIRONMENT_VARIABLE_LOOKUP);
+            var tableName = Environment.GetEnvironmentVariable(TablenameEnvironmentVariableLookup);
+            var logLevel = Environment.GetEnvironmentVariable(LoglevelEnvironmentVariableLookup);
             _logger = new ConsoleLogger<Functions>();
             _logger.LogInformation($"[Functions:Constructor] TableName: {tableName??"[NULL]"}");
 
