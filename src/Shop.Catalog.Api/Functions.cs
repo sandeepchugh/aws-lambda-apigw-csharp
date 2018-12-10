@@ -42,11 +42,11 @@ namespace Shop.Catalog.Api
             // add the table mapping.
             var tableName = Environment.GetEnvironmentVariable(TablenameEnvironmentVariableLookup);
             var logLevel = Environment.GetEnvironmentVariable(LoglevelEnvironmentVariableLookup);
-            _logger = new ConsoleLogger<Functions>();
+            _logger = new ConsoleLogger<Functions>(logLevel);
             _logger.LogInformation($"[Functions:Constructor] TableName: {tableName??"[NULL]"}");
 
-            var productRepository = new ProductRepository(new DynamoDbContextFactory(tableName),new ConsoleLogger<ProductRepository>());
-            _productService = new ProductService(productRepository, new ConsoleLogger<ProductService>());
+            var productRepository = new ProductRepository(new DynamoDbContextFactory(tableName),new ConsoleLogger<ProductRepository>(logLevel));
+            _productService = new ProductService(productRepository, new ConsoleLogger<ProductService>(logLevel));
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Shop.Catalog.Api
         /// <returns></returns>
         public async Task<APIGatewayProxyResponse> GetProductAsync(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            var productId = GetProductId(request);
+            var productId = GetRequestProductId(request);
 
             if (string.IsNullOrEmpty(productId))
             {
@@ -142,7 +142,7 @@ namespace Shop.Catalog.Api
         /// </summary>
         /// <param name="request">An instance of <see cref="APIGatewayProxyRequest"/></param>
         /// <returns>Product id</returns>
-        private string GetProductId(APIGatewayProxyRequest request)
+        private string GetRequestProductId(APIGatewayProxyRequest request)
         {
             string productId = null;
             if (request.PathParameters != null && request.PathParameters.ContainsKey(ID_QUERY_STRING_NAME))
