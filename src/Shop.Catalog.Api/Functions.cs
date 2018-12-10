@@ -86,7 +86,7 @@ namespace Shop.Catalog.Api
                 Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
             };
 
-            _logger.LogInformation($"Respose Status Code: {response.StatusCode}");
+            _logger.LogInformation($"Response Status Code: {response.StatusCode}");
 
             return response;
         }
@@ -132,7 +132,7 @@ namespace Shop.Catalog.Api
                 Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
             };
 
-            _logger.LogInformation($"Respose Status Code: {response.StatusCode}");
+            _logger.LogInformation($"Response Status Code: {response.StatusCode}");
 
             return response;
         }
