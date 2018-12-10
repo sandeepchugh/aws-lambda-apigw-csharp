@@ -34,11 +34,11 @@ namespace Shop.Catalog.Api.Tests
         [Fact]
         public async Task BlogTestAsync()
         {
-            TestLambdaContext context;
-            APIGatewayProxyRequest request;
-            APIGatewayProxyResponse response;
+            //TestLambdaContext context;
+            //APIGatewayProxyRequest request;
+            //APIGatewayProxyResponse response;
 
-            Functions functions = new Functions(this.DDBClient, this.TableName);
+            //Functions functions = new Functions(this.DDBClient, this.TableName);
 
 
    //         // Add a new blog post
