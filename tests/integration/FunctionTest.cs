@@ -31,9 +31,9 @@ namespace Shop.Catalog.Api.Tests
             SetupTableAsync().Wait();
         }
 
-        [Fact]
-        public async Task BlogTestAsync()
-        {
+        //[Fact]
+        //public async Task BlogTestAsync()
+        //{
             //TestLambdaContext context;
             //APIGatewayProxyRequest request;
             //APIGatewayProxyResponse response;
@@ -100,7 +100,7 @@ namespace Shop.Catalog.Api.Tests
    //         context = new TestLambdaContext();
    //         response = await functions.GetBlogAsync(request, context);
    //         Assert.Equal((int)HttpStatusCode.NotFound, response.StatusCode);
-        }
+        //}
 
 
 
