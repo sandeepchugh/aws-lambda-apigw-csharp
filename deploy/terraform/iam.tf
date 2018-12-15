@@ -1,5 +1,5 @@
 resource "aws_iam_role" "products_apigateway_role" {
-  name = "products_apigateway_role${var.env_suffix}"
+  name = "products-apigateway-role${var.env_suffix}"
 
   assume_role_policy = <<EOF
 {
@@ -20,7 +20,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "products_apigateway_policy" {
-  name = "products_apigateway_policy${var.env_suffix}"
+  name = "products-apigateway-policy${var.env_suffix}"
   role = "${aws_iam_role.products_apigateway_role.id}"
   policy = <<EOF
 {
@@ -39,7 +39,7 @@ resource "aws_iam_role_policy" "products_apigateway_policy" {
         {
             "Effect":"Allow",
             "Action":"logs:CreateLogGroup",
-            "Resource": "${"aws_cloudwatch_log_group.products_apigateway_log_group.arn}"
+            "Resource": "${aws_cloudwatch_log_group.products_apigateway_log_group.arn}"
         },
         {
             "Effect":"Allow",
@@ -48,14 +48,12 @@ resource "aws_iam_role_policy" "products_apigateway_policy" {
                 "logs:PutLogEvents",
                 "logs:DescribeLogStreams"
             ],
-            "Resource": "${"aws_cloudwatch_log_stream.products_apigateway_log_stream.arn}"
+            "Resource": "${aws_cloudwatch_log_stream.products_apigateway_log_stream.arn}"
         },
         {
             "Effect":"Allow",
-            "Action":"lambda::InvokeFunction",
-            "Resource": [
-                "${aws_lambda_function.products_lambda.arn}"
-            ]
+            "Action":"lambda:InvokeFunction",
+            "Resource": "${aws_lambda_function.products_lambda.arn}"
         }
     ]
 }
@@ -63,7 +61,7 @@ EOF
 }
 
 resource "aws_iam_role" "products_lambda_role" {
-  name = "products_lambda_role${var.env_suffix}"
+  name = "products-lambda-role${var.env_suffix}"
 
   assume_role_policy = <<EOF
 {
@@ -84,7 +82,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "products_lambda_policy" {
-  name = "products_lambda_policy${var.env_suffix}"
+  name = "products-lambda-policy${var.env_suffix}"
   role = "${aws_iam_role.products_lambda_role.id}"
   policy = <<EOF
 {

@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "products_table" {
-  name           = "${local.products_table_name}"
+  name           = "products-table${var.env_suffix}"
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "ProductId"
@@ -15,7 +15,7 @@ resource "aws_dynamodb_table" "products_table" {
   }
 
   tags {
-    Name        = "${local.products_table_name}"
+    Name        = "products-table${var.env_suffix}"
     Environment = "${var.env_name}"
     Application = "${local.application_name}"
   }

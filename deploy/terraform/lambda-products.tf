@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "products_lambda" {
-  function_name    = "${local.products_lambda_name}${var.env_name}"
+  function_name    = "products-lambda${var.env_suffix}"
   handler          = "Shop.Catalog.Api::Shop.Catalog.Api.Functions::GetProductsAsync"
   role             = "${aws_iam_role.products_lambda_role.arn}"
   runtime          = "dotnetcore2.1"
@@ -16,7 +16,7 @@ resource "aws_lambda_function" "products_lambda" {
   }
 
   tags {
-    Name        = "${local.products_table_name}"
+    Name        = "products-lambda${var.env_suffix}"
     Environment = "${var.env_name}"
     Application = "${local.application_name}"
   }

@@ -1,8 +1,21 @@
 # api
 resource "aws_api_gateway_rest_api" "products_apigateway" {
-  name        = "${local.products_apigateway_name}"
+  name        = "products-api${var.env_suffix}"
   description = "Shop Catalog Api Gateway"
 }
+
+# stage
+resource "aws_api_gateway_stage" "stage" {
+  stage_name = "${var.env_name}"
+  rest_api_id = "${aws_api_gateway_rest_api.products_apigateway.id}"
+  deployment_id = "${aws_api_gateway_deployment.products_apigateway_deployment.id}"
+
+  lifecycle{
+    ignore_changes = ["deployment_id"]
+  }
+}
+
+
 
 # deployment
 resource "aws_api_gateway_deployment" "products_apigateway_deployment" {
@@ -12,11 +25,15 @@ resource "aws_api_gateway_deployment" "products_apigateway_deployment" {
 
   rest_api_id = "${aws_api_gateway_rest_api.products_apigateway.id}"
   stage_name  = "${var.env_name}"
+
+  lifecycle{
+    create_before_destroy = true
+  }
 }
 
 # usage plan
 resource "aws_api_gateway_usage_plan" "products_apigateway_usage_plan" {
-  name = "products_apigateway_usage_plan${var.env_suffix}"
+  name = "products-apigateway-usage-plan${var.env_suffix}"
 
   api_stages {
     api_id = "${aws_api_gateway_rest_api.products_apigateway.id}"

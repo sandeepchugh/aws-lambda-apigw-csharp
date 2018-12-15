@@ -49,22 +49,7 @@ namespace Shop.Catalog.Api
             _productService = new ProductService(productRepository, new ConsoleLogger<ProductService>(logLevel));
         }
 
-        /// <summary>
-        /// Constructor used for testing passing in a preconfigured DynamoDB client.
-        /// </summary>
-        /// <param name="ddbClient"></param>
-        /// <param name="tableName"></param>
-        public Functions(IAmazonDynamoDB ddbClient, string tableName)
-        {
-            //if (!string.IsNullOrEmpty(tableName))
-            //{
-            //    AWSConfigsDynamoDB.Context.TypeMappings[typeof(Product)] = new Amazon.Util.TypeMapping(typeof(Product), tableName);
-            //}
-
-            //var config = new DynamoDBContextConfig { Conversion = DynamoDBEntryConversion.V2 };
-            //this.DDBContext = new DynamoDBContext(ddbClient, config);
-        }
-
+       
         /// <summary>
         /// A Lambda function that returns back a page worth of blog posts.
         /// </summary>
