@@ -12,6 +12,11 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# Terraform
+.terraform
+.terraform/
+terraform/*.zip
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

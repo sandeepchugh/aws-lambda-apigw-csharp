@@ -19,7 +19,7 @@ resource "aws_iam_role" "products_apigateway_role" {
 EOF
 }
 
-resource "aws_iam_policy" "products_apigateway_policy" {
+resource "aws_iam_role_policy" "products_apigateway_policy" {
   name = "products_apigateway_policy${var.env_suffix}"
   role = "${aws_iam_role.products_apigateway_role.id}"
   policy = <<EOF
@@ -83,7 +83,7 @@ resource "aws_iam_role" "products_lambda_role" {
 EOF
 }
 
-resource "aws_iam_policy" "products_lambda_policy" {
+resource "aws_iam_role_policy" "products_lambda_policy" {
   name = "products_lambda_policy${var.env_suffix}"
   role = "${aws_iam_role.products_lambda_role.id}"
   policy = <<EOF

@@ -25,7 +25,7 @@ resource "aws_lambda_function" "products_lambda" {
 resource "aws_lambda_permission" "products_apigateway_permission" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.products_lambda.funtion_name}"
+  function_name = "${aws_lambda_function.products_lambda.function_name}"
   principal     = "apigateway.amazonaws.com"
 
   # The /*/* portion grants access from any method on any resource
@@ -36,7 +36,7 @@ resource "aws_lambda_permission" "products_apigateway_permission" {
 resource "aws_lambda_permission" "products_lambda_cloudwatch_permission" {
   statement_id  = "AllowCloudwatchInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.products_lambda.funtion_name}"
+  function_name = "${aws_lambda_function.products_lambda.function_name}"
   principal     = "events.amazonaws.com"
   source_arn = "arn:aws:events:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:/*/*"
 }
